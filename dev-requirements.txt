@@ -8,3 +8,5 @@ flake8-annotations
 flake8-docstrings
 flake8-isort
 flake8-mypy
+
+pygraphviz
