@@ -1,3 +1,5 @@
 django
 django-allow-cidr
 django-extensions
+
+python-decouple
