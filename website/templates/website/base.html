@@ -1,18 +1,12 @@
 {% load static %}
-{% load compress %}
 <!DOCTYPE html>
 
 <html>
     <head>
         <title>{{ sitename }} | {{ pagetitle }}</title>
 
-        {% compress css %}
-            <!-- font imports -->
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/opensans-typescale.scss' %}">
-
-            <!-- base stylesheet import -->
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
-        {% endcompress %}
+        <!-- base stylesheet import -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     </head>
 
     <body>

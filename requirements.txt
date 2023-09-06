@@ -1,7 +1,5 @@
 django
 django-allow-cidr
-django_compressor
 django-extensions
-django-libsass
 
 python-decouple
