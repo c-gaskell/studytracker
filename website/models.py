@@ -94,3 +94,41 @@ class Assignment(models.Model):
 
     class Meta:
         ordering = ["due_date", "assigned_date", "name"]
+
+
+class EventType(models.Model):
+    """Type of a calendar event."""
+
+    name = models.CharField(max_length=255)
+    color = models.CharField(max_length=6)  # Hex Color, without #. Case-insensitive
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class CalendarEvent(models.Model):
+    """An event on the calendar."""
+
+    name = models.CharField(max_length=255, blank=True)
+    description = models.TextField(blank=True)
+    event_type = models.ForeignKey(EventType, null=True, on_delete=models.SET_NULL)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+
+    repeat = models.BooleanField(default=False)
+    repeat_until = models.DateField(blank=True)
+    # Represents 7 booleans
+    # - as binary, MSB is Monday, LSB is Sunday
+    # 1 = repeats on this day, 0 = doesn't occur on this day.
+    repeat_days = models.PositiveIntegerField(validators=[MaxValueValidator(127)])
+
+    location_name = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ["start_date", "end_date"]
+
+    def __str__(self) -> str:
+        return self.name + " on " + self.start_date
