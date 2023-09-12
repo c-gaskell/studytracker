@@ -1,3 +1,12 @@
+:root {
+    --top-bar-height: 48px;
+    --primary-col: #6002ee;
+    --secondary-col: #ee0290;
+    --primary-fg: #fff;
+    --secondary-fg: #fff;
+    --page-border-radius: 12px;
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -7,7 +16,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: blue;
+    background-color: var(--primary-col);
     min-height: 100vh;
 }
 
@@ -17,10 +26,85 @@ main {
     margin: 0;
 }
 
+.top-bar {
+    height: var(--top-bar-height);
+    padding: auto;
+    color: var(--primary-fg);
+}
+
+.top-bar-section {
+    height: var(--top-bar-height);
+    vertical-align: middle;
+}
+
+.top-bar-section-left {
+    float: left;
+}
+
+.top-bar-section-right {
+    float: right;
+}
+
+.top-bar-section > * {
+    height: var(--top-bar-height);
+    vertical-align: middle;
+}
+
+.top-bar-section-left > * {
+    padding-left: 10px;
+}
+
+.top-bar-section-right > * {
+    padding-right: 10px;
+}
+
 .content {
-    border-radius: 20px 20px 0 0;
+    border-radius: var(--page-border-radius) var(--page-border-radius) 0 0;
     background-color: white;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
+    margin: 0 0 0 0;
+}
+
+.icon-button {
+    background-color: rgba(255, 255, 255, 0.0);
+    color: inherit;
+    border: 0;
+    border-radius: 0;
+}
+
+.material-button {
+    border: 0;
+    box-shadow: 0 0 4px rgba(0,0,0,0.6);
+    padding: 10px;
+    border-radius: 4px;
+    background-color: var(--secondary-col);
+    color: var(--secondary-fg);
+    position: relative;
+}
+
+.material-button::after {
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    content: "";
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.material-button:hover::after {
+    opacity: 1;
+}
+
+.material-button:active {
+  filter: brightness(150%) contrast(30%);
+}
+
+.material-button:active > * {
+    filter: none;
 }
