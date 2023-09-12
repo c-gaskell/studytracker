@@ -34,3 +34,10 @@ class BaseView(View):
         """
         attrs = self.get_page_attrs(request, kwargs)
         return render(request, self.template, attrs)
+
+
+class HomePage(BaseView):
+    """Homepage dashboard."""
+
+    template = "website/home.html"
+    pagetitle = "Dashboard"
