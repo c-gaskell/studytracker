@@ -23,3 +23,16 @@ main {
     padding: 10px;
     box-sizing: border-box;
 }
+
+.mdl-layout .mdl-layout__header,
+.mdl-layout .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+.fab {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+}

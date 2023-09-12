@@ -7,9 +7,9 @@
         <title>{{ sitename }} | {{ pagetitle }}</title>
 
         <!-- MDL imports -->
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-teal.min.css">
-        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
         {% compress css %}
             <!-- font imports -->
@@ -21,32 +21,48 @@
     </head>
 
     <body>
-        <header class="mdl-top-app-bar mdl-top-app-bar--fixed">
-            <div class="mdc-top-app-bar__row">
-                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                    <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
-                    <span class="mdc-top-app-bar__title">{{ sitename }} | {{ pagetitle }}</span>
-                </section>
-                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-                    <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite</button>
-                    <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
-                    <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
-                </section>
+        <div class="mdl-layout mdl-js-layout">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">{{ pagetitle }}</span>
+
+                    <div class="mdl-layout-spacer"></div>
+
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                    </nav>
+                </div>
+            </header>
+
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Title</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                </nav>
             </div>
-        </header>
 
-        <main class="mdc-top-app-bar--fixed-adjust"><div class="content">
-        {% block content %}
-            <p class="mdc-typography--body1">This is a test page, setup to test the site's template and styling.</p>
+            <main class="mdl-layout__content"><div class="content">
+            {% block content %}
+                <p class="mdc-typography--body1">This is a test page, setup to test the site's template and styling.</p>
 
-            <p><div class="mdc-touch-target-wrapper">
-                <button class="mdc-button mdc-button--touch">
-                    <span class="mdc-button__ripple"></span>
-                    <span class="mdc-button__touch"></span>
-                    <span class="mdc-button__label">Test Button</span>
-                </button>
-              </div>
-        {% endblock content %}
-        </div></main>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Button</button>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect ">Coloured Button</button>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect ">Accent Button</button>
+
+            {% endblock content %}
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab">
+                <i class="material-icons">add</i>
+            </button>
+            </div></main>
+        </div>
     </body>
 </html>
