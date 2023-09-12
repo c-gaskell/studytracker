@@ -101,6 +101,7 @@ class EventType(models.Model):
 
     name = models.CharField(max_length=255)
     color = models.CharField(max_length=6)  # Hex Color, without #. Case-insensitive
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["name"]
@@ -117,6 +118,7 @@ class CalendarEvent(models.Model):
     event_type = models.ForeignKey(EventType, null=True, on_delete=models.SET_NULL)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     repeat = models.BooleanField(default=False)
     repeat_until = models.DateField(blank=True)
