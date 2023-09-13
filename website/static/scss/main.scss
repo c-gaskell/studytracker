@@ -56,3 +56,12 @@ main {
 .dashboard-card > table > tr > td {
     width: max-content;
 }
+
+.navigation-level-1 {
+    padding-left: 60px !important;
+}
+
+.mdl-menu__item > a {
+    color: inherit;
+    text-decoration: inherit;
+}

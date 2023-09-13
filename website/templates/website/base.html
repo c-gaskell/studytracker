@@ -21,7 +21,7 @@
     </head>
 
     <body>
-        <div class="mdl-layout mdl-js-layout">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
                     <span class="mdl-layout-title">{{ pagetitle }}</span>
@@ -29,21 +29,36 @@
                     <div class="mdl-layout-spacer"></div>
 
                     <nav class="mdl-navigation">
-                        <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
+                        {% if user.is_authenticated %}
+                            <a class="mdl-navigation__link" href="">
+                                <span class="material-icons">account_circle</span>
+                                {{ user.get_full_name }}
+                            </a>
+                            <button id="account-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                                <i class="material-icons">more_vert</i>
+                            </button>
+
+                            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                for="account-menu-lower-right">
+                                <li class="mdl-menu__item">Profile</li>
+                                <li class="mdl-menu__item">Preferences</li>
+                                <li class="mdl-menu__item"><a href="/accounts/logout">Log Out</a></li>
+                            </ul>
+                        {% else %}
+                            <a class="mdl-navigation__link" href="">Log In</a>
+                            <a class="mdl-navigation__link" href="">Sign Up</a>
+                        {% endif %}
                     </nav>
                 </div>
             </header>
 
             <div class="mdl-layout__drawer">
-                <span class="mdl-layout-title">Title</span>
+                <span class="mdl-layout-title">Navigation</span>
                 <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="/">Dashboard</a>
+                    <p class="mdl-navigation__link" href="">Data</p>
+                    <a class="mdl-navigation__link navigation-level-1" href="">Years/Terms</a>
+                    <a class="mdl-navigation__link navigation-level-1" href="">Link</a>
                 </nav>
             </div>
 
