@@ -1,4 +1,3 @@
-from django.contrib.auth.views import LogoutView
 from django.urls import include, path
 
 from .views import MDLLoginView
