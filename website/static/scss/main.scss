@@ -42,18 +42,38 @@ main {
     border-radius: 3px;
 }
 
+.dashboard-card button {
+    margin-top: 10px;
+}
+
+.dashboard-card-wrapper {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    border: 1px solid rgba(0,0,0,0);
+}
+
+.dashboard-card-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 .mdl-grid {
     width: 100vw;
     padding: 0;
     margin: 0;
 }
 
-.dashboard-card > table {
+.dashboard-card table {
     width: 100%;
     border-radius: 2px;
 }
 
-.dashboard-card > table > tr > td {
+.dashboard-card table > tr > td {
     width: max-content;
 }
 

@@ -24,29 +24,35 @@
         </div>
 
         <div class="mdl-cell mdl-cell--4-col dashboard-card mdl-shadow--4dp">
-            <h2>Today's Schedule</h2>
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                {% for e in events %}
-                <tr>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <span class="material-icons" style="color: #{{ e.event_type.color }};" id="dot-{{ forloop.counter }}">circle</span>
+            <div class="dashboard-card-wrapper">
+                <h2>Today's Schedule</h2>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    {% for e in events %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <span class="material-icons" style="color: #{{ e.event_type.color }};" id="dot-{{ forloop.counter }}">circle</span>
 
-                        <div class="mdl-tooltip" data-mdl-for="dot-{{ forloop.counter }}">
-                            {{ e.event_type.name }}
-                        </div>
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ e.name }}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ e.location_name }}</td>
-                    <td>{{ e.start_date|time:"H:i" }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td class="mdl-data-table__cell--non-numeric">No Events Today</td>
-                    <td class="mdl-data-table__cell--non-numeric">-</td>
-                    <td>-</td>
-                </tr>
-                {% endfor %}
-            </table>
+                            <div class="mdl-tooltip" data-mdl-for="dot-{{ forloop.counter }}">
+                                {{ e.event_type.name }}
+                            </div>
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ e.name }}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ e.location_name }}</td>
+                        <td>{{ e.start_date|time:"H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">No Events Today</td>
+                        <td class="mdl-data-table__cell--non-numeric">-</td>
+                        <td>-</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <button class="mdl-button mdl-js-button mdl-button--primary dashboard-card-more" style="float: right;">
+                    View Full Calendar
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
         </div>
     </div>
 {% endblock content %}
