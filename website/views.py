@@ -6,6 +6,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 
+from .models import CalendarEvent
+
 
 class BaseView(View):
     """Parent class for pages using the `website/base.html` template."""
@@ -41,3 +43,10 @@ class HomePage(BaseView):
 
     template = "website/home.html"
     pagetitle = "Dashboard"
+
+    def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        attrs = super().get_page_attrs(request, kwargs)
+
+        attrs['events'] = CalendarEvent.objects.filter(author=request.user)
+
+        return attrs
