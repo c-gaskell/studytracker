@@ -121,11 +121,11 @@ class CalendarEvent(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     repeat = models.BooleanField(default=False)
-    repeat_until = models.DateField(blank=True)
+    repeat_until = models.DateField(null=True, blank=True)
     # Represents 7 booleans
     # - as binary, MSB is Monday, LSB is Sunday
     # 1 = repeats on this day, 0 = doesn't occur on this day.
-    repeat_days = models.PositiveIntegerField(validators=[MaxValueValidator(127)])
+    repeat_days = models.PositiveIntegerField(validators=[MaxValueValidator(127)], null=True, blank=True)
 
     location_name = models.TextField(blank=True)
 
@@ -133,4 +133,4 @@ class CalendarEvent(models.Model):
         ordering = ["start_date", "end_date"]
 
     def __str__(self) -> str:
-        return self.name + " on " + self.start_date
+        return self.name + " on " + self.start_date.isoformat()
