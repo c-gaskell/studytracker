@@ -134,3 +134,11 @@ class CalendarEvent(models.Model):
 
     def __str__(self) -> str:
         return self.name + " on " + self.start_date.isoformat()
+
+    @classmethod
+    def today(cls: "CalendarEvent") -> models.QuerySet:
+        """Check if event is today."""
+        return cls.objects.filter(
+            start_date__gte=timezone.now().replace(hour=0, minute=0, second=0),
+            end_date__lte=timezone.now().replace(hour=23, minute=59, second=59)
+        )

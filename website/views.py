@@ -47,6 +47,6 @@ class HomePage(BaseView):
     def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
         attrs = super().get_page_attrs(request, kwargs)
 
-        attrs['events'] = CalendarEvent.objects.filter(author=request.user)
+        attrs['events'] = CalendarEvent.today().filter(author=request.user)
 
         return attrs
