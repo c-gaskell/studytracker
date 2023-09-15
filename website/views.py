@@ -45,6 +45,7 @@ class HomePage(BaseView):
     pagetitle = "Dashboard"
 
     def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        """Add events to homepage."""
         attrs = super().get_page_attrs(request, kwargs)
 
         attrs['events'] = CalendarEvent.today().filter(author=request.user)
