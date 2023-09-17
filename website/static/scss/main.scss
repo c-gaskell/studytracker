@@ -86,24 +86,18 @@ main {
     text-decoration: inherit;
 }
 
-.calendar-table {
+.calendar-container {
+    display: grid;
     width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
+    grid-template-columns: auto repeat(7, 1fr);
+    grid-template-rows: auto repeat(1440, 1px);
 }
 
-.calendar-table-day-header {
-    text-align: center !important;
+.calendar-day-wrapper {
+    text-align: center;
 }
 
-.calendar-table-row {
-    height: 16px;
-    border: 1px solid darkgrey;
-    border-right: 0; border-left: 0;
-}
-
-.calendar-table-event-container {
+.calendar-item-wrapper {
     border-radius: 5px;
-    margin: 4px;
     padding: 6px 12px;
 }

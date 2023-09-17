@@ -145,12 +145,15 @@ class CalendarEvent(models.Model):
             end_date__lte=timezone.now().replace(hour=23, minute=59, second=59)
         )
 
-    def vspan(self) -> int:
-        """Returns the number of rows the event spans in the calendar table."""
-        start, end = self.start_date, self.end_date
-        start -= timedelta(minutes=start.minute % 15)
+    def start_min(self) -> int:
+        """Return the start row in the CSS Grid Calendar."""
+        return (self.start_date.hour * 60) + self.start_date.minute
 
-        if end.date() > start.date():
-            end = start.replace(hour=23, minute=59)
+    def end_min(self) -> int:
+        """Return the end row in the CSS Grid Calendar."""
+        if self.end_date.date() > self.start_date.date():
+            end = self.start_date.replace(hour=23, minute=59)
+        else:
+            end = self.end_date
 
-        return ceil((end - start).seconds / (15 * 60))
+        return (end.hour * 60) + end.minute

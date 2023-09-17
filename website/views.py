@@ -75,20 +75,14 @@ class CalendarPage(BaseView):
             "Sunday",
         ]
 
+        attrs['hours'] = [(h * 60, f"{h:02d}:00") for h in range(24)]
+
         if request.user.is_authenticated:
             currweek = timezone.now().isocalendar()[1]
 
-            attrs['events']: List[List[CalendarEvent]] = [
-                [None] * 7 for day in range(24 * 4)
-            ]
-            for event in CalendarEvent.objects.filter(
+            attrs['events'] = CalendarEvent.objects.filter(
                 start_date__week=currweek,
                 author=request.user,
-            ):
-                attrs['events'][
-                    ((event.start_date.hour * 60) + event.start_date.minute) // 15
-                ][
-                    event.start_date.weekday()
-                ] = event
+            )
 
         return attrs
