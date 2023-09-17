@@ -3,6 +3,8 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils import timezone
 
+from datetime import timedelta
+from math import ceil
 
 class AcYear(models.Model):
     """Academic Year."""
@@ -142,3 +144,13 @@ class CalendarEvent(models.Model):
             start_date__gte=timezone.now().replace(hour=0, minute=0, second=0),
             end_date__lte=timezone.now().replace(hour=23, minute=59, second=59)
         )
+
+    def vspan(self) -> int:
+        """Returns the number of rows the event spans in the calendar table."""
+        start, end = self.start_date, self.end_date
+        start -= timedelta(minutes=start.minute % 15)
+
+        if end.date() > start.date():
+            end = start.replace(hour=23, minute=59)
+
+        return ceil((end - start).seconds / (15 * 60))

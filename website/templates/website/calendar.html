@@ -1,9 +1,11 @@
 {% extends "website/base.html" %}
 
 {% block content %}
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp calendar-table">
+    {% if user.is_authenticated %}
+    <table class="mdl-shadow--2dp calendar-table">
         <thead>
             <tr>
+                <td></td>
                 {% for day in weekdays %}
                     <td class="calendar-table-day-header">{{ day }}</td>
                 {% endfor %}
@@ -12,9 +14,13 @@
         <tbody>
             {% for interval in events %}
             <tr class="calendar-table-row">
+                {% if not forloop.counter0|divisibleby:4 and forloop.counter0|divisibleby:2 and not forloop.counter0 == 94 %}
+                <td rowspan="4">hour</td>
+                {% endif %}
+
                 {% for e in interval %}
                 {% if e %}
-                    <td class="mdl-data-table__cell--non-numeric">
+                    <td class="calendar-table-event-td" rowspan="{{ e.vspan }}">
                         <div class="calendar-table-event-container" style="background-color: #{{ e.event_type.color }};">
                             <span>{{ e.name }}</span>
                         </div>
@@ -27,4 +33,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <p>Please <a href="/accounts/login">log in</a> to view your calendar.</a></p>
+    {% endif %}
 {% endblock content %}

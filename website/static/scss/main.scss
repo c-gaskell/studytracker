@@ -89,15 +89,17 @@ main {
 .calendar-table {
     width: 100%;
     table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .calendar-table-day-header {
     text-align: center !important;
 }
 
-.calendar-table-row, .calendar-table-row > td {
-    height: 5px !important;
-    max-height: 5px;
+.calendar-table-row {
+    height: 16px;
+    border: 1px solid darkgrey;
+    border-right: 0; border-left: 0;
 }
 
 .calendar-table-event-container {
