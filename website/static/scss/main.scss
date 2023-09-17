@@ -81,7 +81,15 @@ main {
     padding-left: 60px !important;
 }
 
-.mdl-menu__item > a {
+.mdl-menu__item > a, button > a {
     color: inherit;
     text-decoration: inherit;
+}
+
+.calendar-table {
+    width: 100%;
+}
+
+.calendar-table-day-header {
+    text-align: center !important;
 }
