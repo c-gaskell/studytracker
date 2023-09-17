@@ -51,3 +51,10 @@ class HomePage(BaseView):
         attrs['events'] = CalendarEvent.today().filter(author=request.user)
 
         return attrs
+
+
+class CalendarPage(BaseView):
+    """Calendar Page."""
+
+    template = "website/calendar.html"
+    pagetitle = "Calendar"
