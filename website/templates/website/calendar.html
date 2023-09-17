@@ -1,1 +1,30 @@
 {% extends "website/base.html" %}
+
+{% block content %}
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp calendar-table">
+        <thead>
+            <tr>
+                {% for day in weekdays %}
+                    <td class="calendar-table-day-header">{{ day }}</td>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for interval in events %}
+            <tr class="calendar-table-row">
+                {% for e in interval %}
+                {% if e %}
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <div class="calendar-table-event-container" style="background-color: #{{ e.event_type.color }};">
+                            <span>{{ e.name }}</span>
+                        </div>
+                    </td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

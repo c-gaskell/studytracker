@@ -1,9 +1,11 @@
-from typing import Any, Dict
+from typing import Any, Dict, List
+from pprint import pprint
 
 from decouple import config
 from django.contrib.auth.models import User
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.utils import timezone
 from django.views import View
 
 from .models import CalendarEvent
@@ -58,3 +60,33 @@ class CalendarPage(BaseView):
 
     template = "website/calendar.html"
     pagetitle = "Calendar"
+
+    def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        attrs = super().get_page_attrs(request, kwargs)
+
+        attrs['weekdays'] = [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ]
+
+        currweek = timezone.now().isocalendar()[1]
+
+        attrs['events']: List[List[CalendarEvent]] = [
+            [None] * 7 for day in range(24 * 4)
+        ]
+        for event in CalendarEvent.objects.filter(
+            start_date__week=currweek,
+            author=request.user,
+        ):
+            attrs['events'][
+                ((event.start_date.hour * 60) + event.start_date.minute) // 15
+            ][
+                event.start_date.weekday()
+            ] = event
+
+        return attrs

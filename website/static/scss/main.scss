@@ -88,8 +88,20 @@ main {
 
 .calendar-table {
     width: 100%;
+    table-layout: fixed;
 }
 
 .calendar-table-day-header {
     text-align: center !important;
+}
+
+.calendar-table-row, .calendar-table-row > td {
+    height: 5px !important;
+    max-height: 5px;
+}
+
+.calendar-table-event-container {
+    border-radius: 5px;
+    margin: 4px;
+    padding: 6px 12px;
 }
