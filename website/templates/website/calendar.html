@@ -2,27 +2,34 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <div class="calendar-container">
-        {% for w in weekdays %}
-            <div class="calendar-day-wrapper" style="grid-column-start: {{forloop.counter|add:1}};">
-                <span>{{ w }}</span>
+    <div class="calendar-scroller">
+        <div class="calendar-container">
+            <div class="calendar-header-shadow mdl-shadow--2dp">
+                <span>&nbsp;</span>
             </div>
-        {% endfor %}
-        {% for row, h in hours %}
-            <div class="calendar-hour-wrapper" style="grid-column-start: 1; grid-row-start: {{ row|add:2 }}; grid-row-end: {{ row|add:62 }}">
-                <span>{{ h }}</span>
-            </div>
-        {% endfor %}
-        {% for e in events %}
-            <div class="calendar-item-wrapper" style="
-                background-color: #{{ e.event_type.color }};
-                grid-column-start: {{ e.start_date.weekday|add:2 }};
-                grid-row-start: {{ e.start_min|add:2 }};
-                grid-row-end: {{ e.end_min|add:2 }};
-            ">
-                <span>{{ e.name }}</span>
-            </div>
-        {% endfor %}
+            {% for w in weekdays %}
+                <div class="calendar-day-wrapper" style="grid-column-start: {{forloop.counter|add:1}};">
+                    <span>{{ w }}</span>
+                </div>
+            {% endfor %}
+            {% for row, h in hours %}
+                <div class="calendar-hour-wrapper" style="grid-column-start: 1; grid-row-start: {{ row|add:2 }}; grid-row-end: {{ row|add:62 }}">
+                    <span>{{ h }}</span>
+                </div>
+            {% endfor %}
+            {% for e in events %}
+                <div class="calendar-item-wrapper mdl-shadow--2dp" style="
+                    background-color: #{{ e.event_type.color }};
+                    grid-column-start: {{ e.start_date.weekday|add:2 }};
+                    grid-row-start: {{ e.start_min|add:2 }};
+                    grid-row-end: {{ e.end_min|add:2 }};
+                ">
+                    <p>{{ e.name }}</p>
+                    <p>{{ e.start_date.time }} - {{ e.end_date.time }}</p>
+                    <p>{{ e.location_name }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
     {% else %}
     <p>Please <a href="/accounts/login">log in</a> to view your calendar.</a></p>

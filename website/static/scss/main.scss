@@ -20,7 +20,7 @@ main {
     border-radius: 20px 20px 0 0;
     background-color: white;
     height: 100%;
-    padding: 10px;
+    padding: 10px 0;
     box-sizing: border-box;
 }
 
@@ -86,18 +86,51 @@ main {
     text-decoration: inherit;
 }
 
+.calendar-scroller {
+    margin: 0; padding: 0;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+}
+
 .calendar-container {
     display: grid;
     width: 100%;
     grid-template-columns: auto repeat(7, 1fr);
     grid-template-rows: auto repeat(1440, 1px);
+    grid-column-gap: 0;
 }
 
-.calendar-day-wrapper {
+.calendar-day-wrapper, .calendar-header-shadow {
     text-align: center;
+    position: sticky;
+    top: 0;
+    grid-row-start: 1;
+    padding: 6px;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.calendar-hour-wrapper {
+    padding: 0 5px;
+    font-size: 1.2em;
+}
+
+.calendar-header-shadow {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    z-index: 0;
+    border-radius: 4px;
+    background-color: white;
 }
 
 .calendar-item-wrapper {
     border-radius: 5px;
     padding: 6px 12px;
+    overflow-y: hidden;
+    margin: 0 2px;
+}
+
+.calendar-item-wrapper p {
+    margin: 0;
 }
