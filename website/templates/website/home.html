@@ -1,6 +1,7 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col dashboard-card mdl-shadow--4dp">
             <h2>Current Assigments</h2>
@@ -57,4 +58,7 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <p>Please <a href="/accounts/login">log in</a> to view your dashboard.</a></p>
+    {% endif %}
 {% endblock content %}
