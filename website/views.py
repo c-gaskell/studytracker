@@ -1,5 +1,7 @@
 from typing import Any, Dict, List
 from pprint import pprint
+from datetime import date
+from calendar import month_name
 
 from decouple import config
 from django.contrib.auth.models import User
@@ -65,7 +67,9 @@ class CalendarPage(BaseView):
     def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
         attrs = super().get_page_attrs(request, kwargs)
 
-        attrs['weekdays'] = [
+        currweek = timezone.now().isocalendar()[1]
+
+        days = [
             "Monday",
             "Tuesday",
             "Wednesday",
@@ -74,11 +78,15 @@ class CalendarPage(BaseView):
             "Saturday",
             "Sunday",
         ]
+        attrs['weekdays'] = [
+            f"{w} {date.fromisocalendar(timezone.now().year, currweek, d+1).day}" for d, w in enumerate(days)
+        ]
+        wstart = date.fromisocalendar(timezone.now().year, currweek, 1)
+        attrs['month'] = f"{month_name[wstart.month]} {wstart.year}"
 
         attrs['hours'] = [(h * 60, f"{h:02d}:00") for h in range(24)]
 
         if request.user.is_authenticated:
-            currweek = timezone.now().isocalendar()[1]
 
             attrs['events'] = CalendarEvent.objects.filter(
                 start_date__week=currweek,

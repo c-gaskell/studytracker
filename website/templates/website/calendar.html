@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
     <div class="calendar-controller mdl-shadow--4dp">
-        <span>September 2023</span>
+        <span>{{ month }}</span>
         <div class="calendar-controller-spacer"></div>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
             <span class="material-icons">add</span>
