@@ -2,6 +2,14 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+    <div class="calendar-controller mdl-shadow--4dp">
+        <span>September 2023</span>
+        <div class="calendar-controller-spacer"></div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            <span class="material-icons">add</span>
+            <span>Add new event</span>
+        </button>
+    </div>
     <div class="calendar-scroller">
         <div class="calendar-container">
             <div class="calendar-header-shadow mdl-shadow--2dp">

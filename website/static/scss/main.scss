@@ -134,3 +134,23 @@ main {
 .calendar-item-wrapper p {
     margin: 0;
 }
+
+.calendar-controller {
+    width: 100%;
+    box-sizing: border-box;
+    margin: -10px 0 10px 0;
+    padding: 10px 20px  ;
+    font-size: 1.4em;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.calendar-controller-spacer {
+    flex-grow: 1;
+}
+
+.calendar-controller > span {
+    align-self: center;
+}
