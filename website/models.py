@@ -89,7 +89,7 @@ class Assignment(models.Model):
     description = models.TextField(blank=True)
     assigned_date = models.DateTimeField(default=timezone.now)
     due_date = models.DateTimeField(null=True)
-    module = models.ForeignKey(Module, on_delete=models.SET_NULL, null=True)
+    module = models.ForeignKey(Module, on_delete=models.SET_NULL, null=True, blank=True)
 
     # module is nullable so explicit relation to User is needed
     creator = models.ForeignKey(User, on_delete=models.CASCADE)

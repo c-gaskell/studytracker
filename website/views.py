@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views import View
 
-from .models import CalendarEvent
+from .models import Assignment, CalendarEvent
 
 
 class BaseView(View):
@@ -54,6 +54,7 @@ class HomePage(BaseView):
 
         if request.user.is_authenticated:
             attrs['events'] = CalendarEvent.today().filter(author=request.user)
+            attrs['assignments'] = Assignment.objects.filter(creator=request.user)
 
         return attrs
 
