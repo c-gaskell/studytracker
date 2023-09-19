@@ -1,23 +1,25 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
+<div class="login-container">
+    <h2>Log In</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
 
-    <div class="mdl-textfield mdl-js-textfield">
-        {{ form.username.errors }}
-        <label class="mdl-textfield__label" for="{{ form.username.id }}" id="{{ form.username.id_for_label }}">Username</label>
-        {{ form.username }}
-    </div>
-    <br>
-    <div class="mdl-textfield mdl-js-textfield">
-        {{ form.password.errors }}
-        <label class="mdl-textfield__label" for="{{ form.password.id }}" id="{{ form.password.id_for_label }}">Password</label>
-        {{ form.password }}
-    </div>
-    <br>
-    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect ">Log In</button>
-</form>
+        <div class="mdl-textfield mdl-js-textfield">
+            {{ form.username.errors }}
+            <label class="mdl-textfield__label" for="{{ form.username.id }}" id="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username }}
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield">
+            {{ form.password.errors }}
+            <label class="mdl-textfield__label" for="{{ form.password.id }}" id="{{ form.password.id_for_label }}">Password</label>
+            {{ form.password }}
+        </div>
+        <br>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect ">Log In</button>
+    </form>
+</div>
 {% endblock content %}
