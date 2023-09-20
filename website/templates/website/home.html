@@ -3,20 +3,20 @@
 {% block content %}
     {% if user.is_authenticated %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col dashboard-card mdl-shadow--4dp">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--8-col-tablet dashboard-card mdl-shadow--4dp">
             <h2>Current Assigments</h2>
             <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                 {% for a in assignments %}
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">{{ a.name }}</td>
                     <td>{{ a.due_date }}</td>
-                    <td><i class="material-icons">done</i></td>
+                    <td class="assignment-done-cell"><i class="material-icons">done</i></td>
                 </tr>
                 {% empty %}
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">You're all clear! No Current Assigments.</td>
                     <td>-</td>
-                    <td></td>
+                    <td class="assignment-done-cell"></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -28,7 +28,7 @@
             </button>
         </div>
 
-        <div class="mdl-cell mdl-cell--4-col dashboard-card mdl-shadow--4dp">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--8-col-tablet dashboard-card mdl-shadow--4dp">
             <div class="dashboard-card-wrapper">
                 <h2>Today's Schedule</h2>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
