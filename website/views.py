@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 from pprint import pprint
-from datetime import date
+from datetime import date, datetime, timedelta
 from calendar import month_name
 
 from decouple import config
@@ -102,3 +102,29 @@ class AssignmentsPage(BaseView):
 
     template = "website/assignments.html"
     pagetitle = "Assigments"
+
+    def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        attrs = super().get_page_attrs(request, kwargs)
+
+        if request.user.is_authenticated:
+            my_assignments = Assignment.objects.filter(creator=request.user)
+            groups = [
+                ("Overdue", my_assignments.filter(
+                    due_date__lt=datetime.now(),
+                ), "overdue"),
+                ("Due Today", my_assignments.filter(
+                    due_date__date=date.today(),
+                    due_date__gte=datetime.now(),
+                ), ""),
+                ("Due This Week", my_assignments.filter(
+                    due_date__gte=date.today() + timedelta(days=1),
+                    due_date__lt=date.today() + timedelta(days=7),
+                ), ""),
+                ("Due Later", my_assignments.filter(
+                    due_date__gte=date.today() + timedelta(days=7),
+                ), ""),
+            ]
+
+            attrs['groups'] = [(title, assignments, c) for title, assignments, c in groups if assignments]
+
+        return attrs

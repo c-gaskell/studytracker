@@ -1,1 +1,25 @@
 {% extends "website/base.html" %}
+
+{% block content %}
+    <div class="assignments-container">
+        {% for g in groups %}
+            <h3>{{ g.0 }}</h2>
+            <table class="mdl-data-table mdl-shadow--4dp assignments-table">
+                {% for a in g.1 %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric {{ g.2 }}">{{ a.name }}</td>
+                        <td class="{{ g.2 }}">{{ a.due_date }}</td>
+                        <td class="assignment-done-cell"><i class="material-icons">done</i></td></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">No Assigments Found</td>
+                        <td>-</td>
+                        <td class="assignment-done-cell"></td>
+                {% endfor %}
+            </table>
+        {% empty %}
+        <p>You're all done! No assignments found.</p>
+        {% endfor %}
+    </div>
+{% endblock content %}

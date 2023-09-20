@@ -155,6 +155,19 @@ main {
     align-self: center;
 }
 
-.login-container {
-    padding-left: 10px;
+.login-container, .assignments-container {
+    padding: 0 20px;
+}
+
+.assignments-table {
+    width: 100%;
+    max-width: 800px;
+}
+
+.overdue {
+    color: red;
+}
+
+.assignment-done-cell {
+    width: 56px;
 }
