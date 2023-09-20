@@ -95,3 +95,10 @@ class CalendarPage(BaseView):
             )
 
         return attrs
+
+
+class AssignmentsPage(BaseView):
+    """Assignments Page."""
+
+    template = "website/assignments.html"
+    pagetitle = "Assigments"
