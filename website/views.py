@@ -54,7 +54,7 @@ class HomePage(BaseView):
 
         if request.user.is_authenticated:
             attrs['events'] = CalendarEvent.today().filter(author=request.user)
-            attrs['assignments'] = Assignment.objects.filter(creator=request.user)
+            attrs['assignments'] = Assignment.objects.filter(creator=request.user, done=False)
 
         return attrs
 
@@ -107,7 +107,7 @@ class AssignmentsPage(BaseView):
         attrs = super().get_page_attrs(request, kwargs)
 
         if request.user.is_authenticated:
-            my_assignments = Assignment.objects.filter(creator=request.user)
+            my_assignments = Assignment.objects.filter(creator=request.user, done=False)
             groups = [
                 ("Overdue", my_assignments.filter(
                     due_date__lt=datetime.now(),
