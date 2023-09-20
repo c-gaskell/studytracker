@@ -123,6 +123,7 @@ class AssignmentsPage(BaseView):
                 ("Due Later", my_assignments.filter(
                     due_date__gte=date.today() + timedelta(days=7),
                 ), ""),
+                ("Completed", Assignment.objects.filter(creator=request.user, done=True), ""),
             ]
 
             attrs['groups'] = [(title, assignments, c) for title, assignments, c in groups if assignments]
