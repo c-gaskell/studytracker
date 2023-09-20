@@ -159,9 +159,14 @@ main {
     padding: 0 20px;
 }
 
-.assignments-table {
+.assignment-group-container {
     width: 100%;
     max-width: 800px;
+    position: relative;
+}
+
+.assignments-table {
+    width: 100%;
 }
 
 .overdue {
@@ -174,4 +179,22 @@ main {
 
 .assignment-done-cell {
     width: 56px;
+}
+
+.collapse-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    rotate: 0;
+    transition: rotate 100ms;
+}
+
+.collapse-button-hidden {
+    rotate: 90deg;
+    transition: rotate 100ms;
+}
+
+.collapsible-hidden {
+    display: none !important;
 }

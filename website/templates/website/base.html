@@ -18,9 +18,11 @@
             <!-- base stylesheet import -->
             <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
         {% endcompress %}
+
+        <script src="{% static "js/collapsible.js" %}"></script>
     </head>
 
-    <body>
+    <body onload="registerCollapsibles()">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
