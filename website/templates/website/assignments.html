@@ -40,4 +40,12 @@
         <p>You're all done! No assignments found.</p>
         {% endfor %}
     </div>
+
+    <a class="button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored fab" id="add-new" href="/assignments/create">
+        <i class="material-icons">add</i>
+    </button>
+
+    <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="add-new">
+        Add New Assignment
+    </div>
 {% endblock content %}
