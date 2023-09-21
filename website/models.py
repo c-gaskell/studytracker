@@ -98,6 +98,12 @@ class Assignment(models.Model):
     class Meta:
         ordering = ["due_date", "assigned_date", "name"]
 
+    def __str__(self) -> str:
+        if self.done:
+            return "Completed assignment: " + self.name
+        else:
+            return "Assignment: " + self.name
+
 
 class EventType(models.Model):
     """Type of a calendar event."""
