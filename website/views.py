@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views import View
 
+from .forms import AssignmentForm
 from .models import Assignment, CalendarEvent
 
 
@@ -145,3 +146,17 @@ class AssignmentsPage(BaseView):
             return redirect(originpage)
         else:
             return self.get(request)
+
+
+class AssignmentFormPage(BaseView):
+    """Page to display the AssignmentForm."""
+
+    template = "website/assignmentform.html"
+    pagetitle = "Create or Edit Assignment"
+
+    def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        attrs = super().get_page_attrs(request, kwargs)
+
+        attrs['form'] = AssignmentForm
+
+        return attrs

@@ -1,0 +1,10 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+    <form method="post" class="assignmentform-container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">Submit</button>
+    </form>
+{% endblock content %}
