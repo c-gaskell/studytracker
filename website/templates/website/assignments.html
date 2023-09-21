@@ -15,7 +15,16 @@
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric {{ g.2 }}">{{ a.name }}</td>
                             <td class="{{ g.2 }}">{{ a.due_date }}</td>
-                            <td class="assignment-done-cell"><i class="material-icons">done</i></td></td>
+                            <td class="assignment-done-cell">
+                                <form method="post" action="/assignments/">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user" value="{{ user.username }}"/>
+                                    <input type="hidden" name="assignment" value="{{ a.id }}"/>
+                                    <button action="/assignments/" class="mdl-button mdl-js-button mdl-button--icon">
+                                        <i class="material-icons">done</i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     {% empty %}
                         <tr>

@@ -129,3 +129,15 @@ class AssignmentsPage(BaseView):
             attrs['groups'] = [(title, assignments, c) for title, assignments, c in groups if assignments]
 
         return attrs
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        """Recieve and process assignment done forms."""
+        username = request.POST.get('user')
+        id = request.POST.get('assignment')
+
+        user = User.objects.get(username=username)
+        assignment = Assignment.objects.get(creator=user, id=id)
+        assignment.done = not assignment.done
+        assignment.save()
+
+        return self.get(request)
