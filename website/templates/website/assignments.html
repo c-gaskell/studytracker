@@ -9,11 +9,19 @@
         {% for g in groups %}
             <div class="assignment-group-container">
                 <h3>{{ g.0 }}</h3>
-                <span class="material-icons collapse-button" for="assignments-table-{{ g.0 }}">expand_more</span>
+                <span class="material-icons collapse-button section-collapse-button" for="assignments-table-{{ g.0 }}">expand_more</span>
                 <table class="mdl-data-table mdl-shadow--4dp assignments-table" id="assignments-table-{{ g.0 }}">
                     {% for a in g.1 %}
                         <tr>
-                            <td class="mdl-data-table__cell--non-numeric {{ g.2 }}">{{ a.name }}</td>
+                            <td class="assignment-expand-cell">
+                                <button class="mdl-button mdl-js-button mdl-button--icon collapse-button collapse-button-left collapse-button-hidden" for="assignment-desc-{{ a.id }}">
+                                    <i class="material-icons">expand_more</i>
+                                </button>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric {{ g.2 }}">
+                                {{ a.name }}
+                                <p class="assignment-desc collapsible-hidden" id="assignment-desc-{{ a.id }}">{{ a.get_description }}</p>
+                            </td>
                             <td class="{{ g.2 }}">{{ a.due_date }}</td>
                             <td class="assignment-done-cell">
                                 <form method="post" action="/assignments/">

@@ -177,22 +177,29 @@ main {
   text-shadow: 0 0 5px black;
 }
 
-.assignment-done-cell {
+.assignment-done-cell, .assignment-expand-cell {
     width: 56px;
 }
 
 .collapse-button {
+    rotate: 0;
+    transition: rotate 100ms;
+}
+
+.section-collapse-button {
     position: absolute;
     right: 0;
     top: 0;
     padding: 10px;
-    rotate: 0;
-    transition: rotate 100ms;
 }
 
 .collapse-button-hidden {
     rotate: 90deg;
     transition: rotate 100ms;
+}
+
+.collapse-button-left.collapse-button-hidden {
+    rotate: -90deg;
 }
 
 .collapsible-hidden {
@@ -203,4 +210,12 @@ a.button {
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
+}
+
+.assignment-desc {
+    max-width: 100%;
+    word-break: break-all;
+    white-space: normal;
+    margin-top: 10px;
+    font-size: 0.95em;
 }

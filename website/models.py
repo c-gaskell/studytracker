@@ -104,6 +104,12 @@ class Assignment(models.Model):
         else:
             return "Assignment: " + self.name
 
+    def get_description(self) -> str:
+        if self.description:
+            return self.description
+        else:
+            return "No Description..."
+
 
 class EventType(models.Model):
     """Type of a calendar event."""
