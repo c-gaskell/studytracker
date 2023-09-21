@@ -14,7 +14,7 @@
                     {% for a in g.1 %}
                         <tr>
                             <td class="assignment-expand-cell">
-                                <button class="mdl-button mdl-js-button mdl-button--icon collapse-button collapse-button-left collapse-button-hidden" for="assignment-desc-{{ a.id }}">
+                                <button class="mdl-button mdl-js-button mdl-button--icon collapse-button collapse-button-left collapse-button-hidden" for="assignment-desc-{{ a.id }} assignment-edit-{{ a.id }}">
                                     <i class="material-icons">expand_more</i>
                                 </button>
                             </td>
@@ -33,6 +33,10 @@
                                         <i class="material-icons">done</i>
                                     </button>
                                 </form>
+
+                                <a class="button mdl-button mdl-js-button mdl-button--icon collapsible-hidden" id="assignment-edit-{{a.id}}" href="/assignments/edit/{{ a.id }}">
+                                    <i class="material-icons">edit</i>
+                                </button>
                             </td>
                         </tr>
                     {% empty %}
