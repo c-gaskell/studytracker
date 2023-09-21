@@ -6,7 +6,7 @@ from calendar import month_name
 from decouple import config
 from django.contrib.auth.models import User
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views import View
 
@@ -134,10 +134,14 @@ class AssignmentsPage(BaseView):
         """Recieve and process assignment done forms."""
         username = request.POST.get('user')
         id = request.POST.get('assignment')
+        originpage = request.POST.get('origin')
 
         user = User.objects.get(username=username)
         assignment = Assignment.objects.get(creator=user, id=id)
         assignment.done = not assignment.done
         assignment.save()
 
-        return self.get(request)
+        if originpage:
+            return redirect(originpage)
+        else:
+            return self.get(request)

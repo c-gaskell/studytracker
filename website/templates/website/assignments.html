@@ -20,6 +20,7 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="user" value="{{ user.username }}"/>
                                     <input type="hidden" name="assignment" value="{{ a.id }}"/>
+                                    <input type="hidden" name="origin" value="/assignments/"/>
                                     <button action="/assignments/" class="mdl-button mdl-js-button mdl-button--icon">
                                         <i class="material-icons">done</i>
                                     </button>
