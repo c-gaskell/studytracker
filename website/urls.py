@@ -8,4 +8,5 @@ urlpatterns = [
     path('calendar/', CalendarPage.as_view(), name="calendar"),
     path('assignments/', AssignmentsPage.as_view(), name="assignments"),
     path('assignments/create/', AssignmentFormPage.as_view(), name="create assignment"),
+    path('assignments/edit/<int:id>', AssignmentFormPage.as_view(), name="edit assignment"),
 ]

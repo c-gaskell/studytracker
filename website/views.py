@@ -154,8 +154,13 @@ class AssignmentFormPage(BaseView):
     template = "website/assignmentform.html"
     pagetitle = "Create or Edit Assignment"
 
-    def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any], form=None) -> Dict[str, Any]:
+    def get_page_attrs(self, request: HttpRequest, kwargs: Dict[str, Any], form: AssignmentForm = None) -> Dict[str, Any]:
         attrs = super().get_page_attrs(request, kwargs)
+
+        try:
+            form = AssignmentForm(instance=Assignment.objects.get(id=kwargs['id']))
+        except KeyError:
+            pass
 
         if form is None:
             attrs['form'] = AssignmentForm
