@@ -17,6 +17,9 @@ class AssignmentForm(forms.ModelForm):
         ]
 
         widgets = {
-            'due_date': forms.widgets.DateTimeInput(attrs={'type': 'datetime'})
+            'due_date': forms.widgets.DateTimeInput(attrs={
+                'type': 'datetime',
+                'placeholder': 'dd/mm/yyyy hh:mm:ss',
+            })
         }
 
