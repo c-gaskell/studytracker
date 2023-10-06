@@ -6,6 +6,7 @@ from django.utils import timezone
 from datetime import timedelta
 from math import ceil
 
+
 class AcYear(models.Model):
     """Academic Year."""
 
@@ -18,6 +19,9 @@ class AcYear(models.Model):
     class Meta:
         ordering = ['start']
 
+    def __str__(self) -> str:
+        return "AcYear " + self.name
+
 
 class Term(models.Model):
     """Term within a year."""
@@ -29,6 +33,9 @@ class Term(models.Model):
 
     class Meta:
         ordering = ['year', 'start']
+
+    def __str__(self) -> str:
+        return "Term " + self.name + " in " + str(self.year)
 
 
 class Professor(models.Model):
@@ -53,6 +60,8 @@ class Professor(models.Model):
     class Meta:
         ordering = ["last_name", "first_name"]
 
+    __str__ = get_full_name
+
 
 class Module(models.Model):
     """A single module.
@@ -69,6 +78,9 @@ class Module(models.Model):
     class Meta:
         ordering = ["year", "name"]
 
+    def __str__(self) -> str:
+        return "Module " + self.name
+
 
 class Topic(models.Model):
     """A topic within a module."""
@@ -80,6 +92,9 @@ class Topic(models.Model):
 
     class Meta:
         ordering = ["module", "-order_id", "name"]
+
+    def __str__(self) -> str:
+        return "Topic " + self.name + " in " + str(self.module)
 
 
 class Assignment(models.Model):

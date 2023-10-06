@@ -169,13 +169,21 @@ class AssignmentFormPage(BaseView):
 
         return attrs
 
-    def post(self, request: HttpRequest) -> HttpResponse:
-        form = AssignmentForm(request.POST)
-        if form.is_valid():
-            assignment = form.save(commit=False)
-            assignment.creator = request.user
-            assignment.save()
-            return redirect('/assignments/')
+    def post(self, request: HttpRequest, **kwargs) -> HttpResponse:
+        try:
+            id = kwargs['id']
+        except KeyError:
+            form = AssignmentForm(request.POST)
+            if form.is_valid():
+                assignment = form.save(commit=False)
+                assignment.creator = request.user
+                assignment.save()
+                return redirect('/assignments/')
+            else:
+                attrs = self.get_page_attrs(request, form=None)
+                return render(request, self.template, attrs)
         else:
-            attrs = self.get_page_attrs(request, form=None)
-            return render(request, self.template, attrs)
+            assignment = Assignment.objects.get(id=id)
+            form = AssignmentForm(request.POST, instance=assignment)
+            form.save()
+            return redirect('/assignments/')
